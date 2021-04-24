@@ -1,0 +1,42 @@
+language: bash
+
+before_install:
+  - sudo apt-get update && sudo apt-get install -y shellcheck
+  - sudo apt-get update && sudo apt-get install imagemagick
+  - sudo apt-get install p7zip-full
+  - sudo apt-get install ghostscript
+
+script:
+  - wget "https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x04/worldcupplayerinfo.tsv"
+  - wget "https://c4pr1c3.gitee.io/linuxsysadmin/exp/chap0x04/web_log.tsv.7z"
+  - 7z x -ot web_log.tsv.7z
+  - ls -l
+  - bash program1.sh -h
+  - bash program1.sh -q 60
+  - bash program1.sh -r 80%
+  - bash program1.sh -w 5 hft
+  - bash program1.sh -p pre
+  - bash program1.sh -s post
+  - bash program1.sh -t
+  - echo "=============================="
+  - bash program2.sh -h
+  - bash program2.sh -s
+  - bash program2.sh -p
+  - bash program2.sh -n
+  - bash program2.sh -a
+  - echo "=============================="
+  - bash program3.sh -h
+  - bash program3.sh -o
+  - bash program3.sh -i
+  - bash program3.sh -u
+  - bash program3.sh -c
+  - bash program3.sh -f
+  - bash program3.sh -g /icons/text.xbm
+  - shellcheck program1.sh
+  - shellcheck program2.sh
+  - shellcheck program3.sh
+
+
+notifications:
+  email:
+    on_success: never
